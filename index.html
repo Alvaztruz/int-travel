@@ -24,7 +24,7 @@
       <!-- TODO: Sustituir por las tarjetas de resumen correspondientes -->
 
       <!-- Nav (pills) -->
-      <ul class="nav nav-pills mb-3" id="mainTabs" role="tablist">
+      <ul class="nav nav-pills mb-3" id="main-tabs" role="tablist">
         <li class="nav-item" role="presentation">
           <button
             class="nav-link active"
@@ -55,26 +55,26 @@
         <div class="tab-pane fade show active" id="tab-add" role="tabpanel">
           <div class="row">
             <div class="col-12 mb-4">
-              <form id="cityForm" class="row g-3">
+              <form id="city-form" class="row g-3">
                 <div class="col-md-6">
                   <label class="form-label">Ciudad</label>
-                  <input id="cityName" class="form-control" required />
+                  <input id="city-name" class="form-control" required />
                 </div>
                 <div aria-live="polite" aria-atomic="true">
                   <div
-                    id="alertContainer"
+                    id="alert-container"
                     class="position-fixed bottom-0 end-0 p-3"
                     style="z-index: 1080"
                   ></div>
                 </div>
                 <div class="col-md-4">
                   <label class="form-label">País</label>
-                  <input id="cityCountry" class="form-control" />
+                  <input id="city-country" class="form-control" />
                 </div>
                 <div class="col-md-3">
                   <label class="form-label">Fecha ida</label>
                   <input
-                    id="cityDateFrom"
+                    id="city-date-from"
                     class="form-control"
                     type="date"
                     required
@@ -83,7 +83,7 @@
                 <div class="col-md-3">
                   <label class="form-label">Fecha vuelta</label>
                   <input
-                    id="cityDateTo"
+                    id="city-date-to"
                     class="form-control"
                     type="date"
                     required
@@ -94,7 +94,7 @@
                     >Notas (actividades, detalles)</label
                   >
                   <textarea
-                    id="cityNotes"
+                    id="city-notes"
                     class="form-control"
                     placeholder="Actividades a hacer, detalles extra"
                   ></textarea>
@@ -112,7 +112,7 @@
         <div class="tab-pane fade" id="tab-list" role="tabpanel">
           <div class="row">
             <div class="col-12">
-              <table class="table table-sm" id="citiesTable">
+              <table class="table table-sm" id="cities-table">
                 <thead>
                   <tr>
                     <th>Nombre</th>
@@ -123,7 +123,7 @@
                     <th>Notas</th>
                   </tr>
                 </thead>
-                <tbody id="citiesTbody"></tbody>
+                <tbody id="cities-tbody"></tbody>
               </table>
             </div>
           </div>

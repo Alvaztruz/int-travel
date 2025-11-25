@@ -2,10 +2,12 @@ import TripManager from "./domain/tripManager.js";
 import City from "./domain/city.js";
 
 const manager = new TripManager();
-const form = document.getElementById("cityForm");
-const citiesTbody = document.getElementById("citiesTbody");
+const form = document.getElementById("city-form");
+const citiesTbody = document.getElementById("cities-tbody");
 
-form.addEventListener("submit", handleCityFormSubmit);
+form.addEventListener("submit", (e) => {
+  handleCityFormSubmit(e);
+});
 
 function renderCities() {
   citiesTbody.innerHTML = "";
@@ -50,11 +52,11 @@ function handleCityFormSubmit(e) {
 
 function parseFormValues() {
   return {
-    name: document.getElementById("cityName").value,
-    country: document.getElementById("cityCountry").value,
-    dateFrom: document.getElementById("cityDateFrom").value,
-    dateTo: document.getElementById("cityDateTo").value,
-    notes: document.getElementById("cityNotes").value,
+    name: document.getElementById("city-name").value,
+    country: document.getElementById("city-country").value,
+    dateFrom: document.getElementById("city-date-from").value,
+    dateTo: document.getElementById("city-date-to").value,
+    notes: document.getElementById("city-notes").value,
   };
 }
 
@@ -67,8 +69,8 @@ function getTodayIso() {
 
 function setDefaultDates() {
   const today = getTodayIso();
-  const from = document.getElementById("cityDateFrom");
-  const to = document.getElementById("cityDateTo");
+  const from = document.getElementById("city-date-from");
+  const to = document.getElementById("city-date-to");
   if (from && !from.value) from.value = today;
   if (to && !to.value) to.value = today;
 }
@@ -113,7 +115,7 @@ function formatDateIso(d) {
 }
 
 function showToast(title, message, variant = "primary") {
-  const container = document.getElementById("alertContainer");
+  const container = document.getElementById("alert-container");
   if (!container) return;
 
   const variantClass = `alert-${variant}`;
