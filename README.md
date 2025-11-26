@@ -55,7 +55,6 @@
 ## Parte C: rama `feature/remove-city`
 
 1. Agregar validación en TripManager para no permitir agregar ciudades con nombres duplicados. Escribir tests unitarios para esta funcionalidad.
-   
 2. En `TripManager`, implementar la función `removeCityByName(name)` que busca la ciudad por nombre y la elimina. Si no existe, debe lanzar un error. Escribir tests unitarios para esta funcionalidad.
 
 3. Actualizar `main.js` para mostrar un botón `Eliminar` por fila en la tabla de ciudades que use `removeCityByName(name)`.
@@ -77,3 +76,11 @@
 1. Agregar al dashboard superior un resumen que muestre el número de ciudades del viaje.
 2. Agregar una pestaña con un resumen de cantidad de ciudades por país (por ejemplo, España: 3, Uruguay: 2, etc.).
 3. Agregar un botón para eliminar todas las ciudades del viaje con una confirmación previa.
+
+## Documentación
+
+**Jest:** https://jestjs.io/
+**Bootstrap:** https://getbootstrap.com/
+**ESLint:** https://eslint.org/
+**Javascript:** https://www.w3schools.com/js/
+**HTML:** https://www.w3schools.com/html/
