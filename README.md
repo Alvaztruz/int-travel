@@ -14,10 +14,11 @@
 - Si necesita realizar supuestos sobre la implementación, agregue comentarios para explicarlos.
 - Los test unitarios se deben codificar en los archivos correspondientes `*.test.js`.
 - La cobertura de los test unitarios debe alcanzar 100 % de sentencias y ramas.
+- Todas las ramas deben partir de main a menos que se indique lo contrario.
 - No realizar merge de las ramas hasta que se le indique.
 - Ejecutar PADIS utilizando el comando `checkpadis int-travel-padis` en GitHub Codespaces.
 
-## Parte A: rama `feature/city-accommodations` (la rama debe partir de main).
+## Parte A: rama `feature/city-accommodations`.
 
 1. Agregar el campo Accommodation en la clase `City` que almacena un objeto de la clase `Accommodation` con las propiedades: `name` (string) y `cost` (number). Implementar la clase y validar lo siguiente:
 
@@ -36,7 +37,7 @@
 
 7. Subir un issue con el título "Parte A" con captura de la interfaz mostrando la card implementada.
 
-## Parte B: rama `feature/duration` (la rama debe partir de main).
+## Parte B: rama `feature/duration`.
 
 1. Implementar `getTotalDuration()` en la clase `tripManager` que retorne la duración total en días del viaje.
 
