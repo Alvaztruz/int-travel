@@ -5,7 +5,13 @@ class City {
   #dateTo = null;
   #notes = "";
 
-  constructor(cityName, country = null, dateFrom = null, dateTo = null, notes = "") {
+  constructor(
+    cityName,
+    country = null,
+    dateFrom = null,
+    dateTo = null,
+    notes = "",
+  ) {
     this.setName(cityName);
     this.setCountry(country);
     this.validateDatesOrder(dateFrom, dateTo);

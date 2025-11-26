@@ -10,6 +10,7 @@ describe("TripManager", () => {
   test("add a city", () => {
     const c = new City(
       "Madrid",
+      "Spain",
       new Date("2023-04-01"),
       new Date("2023-04-02"),
     );
@@ -20,7 +21,12 @@ describe("TripManager", () => {
 
   test("find city by name", () => {
     manager.addCity(
-      new City("Lisbon", new Date("2023-06-01"), new Date("2023-06-03")),
+      new City(
+        "Lisbon",
+        "Portugal",
+        new Date("2023-06-01"),
+        new Date("2023-06-03"),
+      ),
     );
     expect(manager.findCityByName("Lisbon").getName()).toBe("Lisbon");
     expect(manager.findCityByName("Unknown")).toBeNull();

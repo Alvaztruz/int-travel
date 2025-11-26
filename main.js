@@ -123,7 +123,7 @@ function showToast(title, message, variant = "primary") {
   wrapper.className = `alert ${variantClass} alert-dismissible fade show`;
   wrapper.setAttribute("role", "alert");
   wrapper.innerHTML = `<strong>${escapeHtml(title || "Aviso")}</strong> ${escapeHtml(
-    String(message || "")
+    String(message || ""),
   )} <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>`;
   container.appendChild(wrapper);
 

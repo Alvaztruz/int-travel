@@ -5,6 +5,7 @@ describe("City", () => {
   beforeEach(() => {
     city = new City(
       "TestCity",
+      "TestCountry",
       new Date("2023-05-01"),
       new Date("2023-05-04"),
       "Notas",
@@ -18,23 +19,46 @@ describe("City", () => {
 
     test("should throw error if city name is empty", () => {
       expect(
-        () => new City("", new Date("2023-05-01"), new Date("2023-05-04")),
+        () =>
+          new City(
+            "",
+            "TestCountry",
+            new Date("2023-05-01"),
+            new Date("2023-05-04"),
+          ),
       ).toThrow();
     });
 
     test("should throw error if city name is not a string", () => {
       expect(
-        () => new City(123, new Date("2023-05-01"), new Date("2023-05-04")),
+        () =>
+          new City(
+            123,
+            "TestCountry",
+            new Date("2023-05-01"),
+            new Date("2023-05-04"),
+          ),
       ).toThrow();
     });
 
     test("should throw error if city name is null or undefined", () => {
       expect(
-        () => new City(null, new Date("2023-05-01"), new Date("2023-05-04")),
+        () =>
+          new City(
+            null,
+            "TestCountry",
+            new Date("2023-05-01"),
+            new Date("2023-05-04"),
+          ),
       ).toThrow();
       expect(
         () =>
-          new City(undefined, new Date("2023-05-01"), new Date("2023-05-04")),
+          new City(
+            undefined,
+            "TestCountry",
+            new Date("2023-05-01"),
+            new Date("2023-05-04"),
+          ),
       ).toThrow();
     });
   });
@@ -116,6 +140,7 @@ describe("City", () => {
     test("should calculate duration as 1 day if dateFrom equals dateTo", () => {
       const singleDayCity = new City(
         "SingleDayCity",
+        "TestCountry",
         new Date("2023-05-01"),
         new Date("2023-05-01"),
       );
