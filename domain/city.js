@@ -1,3 +1,5 @@
+import Accommodation from "./accommodation.js";
+
 class City {
   #cityName;
   #country = null;
@@ -5,13 +7,7 @@ class City {
   #dateTo = null;
   #notes = "";
 
-  constructor(
-    cityName,
-    country = null,
-    dateFrom = null,
-    dateTo = null,
-    notes = "",
-  ) {
+  constructor(cityName, country, dateFrom, dateTo, notes = "") {
     this.setName(cityName);
     this.setCountry(country);
     this.validateDatesOrder(dateFrom, dateTo);
@@ -98,7 +94,7 @@ class City {
     const diff = Math.round((b - a) / (1000 * 60 * 60 * 24)) + 1;
     return diff > 0 ? diff : 0;
   }
-
+  
   validateDatesOrder(dateFrom = this.#dateFrom, dateTo = this.#dateTo) {
     if (!dateFrom || !dateTo) {
       throw new Error("Both dateFrom and dateTo are required");

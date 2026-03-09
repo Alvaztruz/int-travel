@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="">
+<html lang="es">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title></title>
+    <title>Travel Planner</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -16,12 +16,9 @@
   </head>
   <body>
     <div class="container py-4">
-      <div class="text-center mb-4">
-        <h2 class="mb-0">Travel Planner</h2>
-      </div>
-
-      <!-- Summary cards -->
-      <!-- TODO: Sustituir por las tarjetas de resumen correspondientes -->
+      <header class="text-center mb-4">
+        <h1 class="mb-0">Travel Planner</h1>
+      </header>
 
       <!-- Nav (pills) -->
       <ul class="nav nav-pills mb-3" id="main-tabs" role="tablist">
@@ -51,28 +48,22 @@
         </li>
       </ul>
 
+      <!-- Formulario de agregar ciudad -->
       <div class="tab-content">
         <div class="tab-pane fade show active" id="tab-add" role="tabpanel">
           <div class="row">
             <div class="col-12 mb-4">
               <form id="city-form" class="row g-3">
                 <div class="col-md-6">
-                  <label class="form-label">Ciudad</label>
+                  <label for="city-name" class="form-label">Ciudad</label>
                   <input id="city-name" class="form-control" required />
                 </div>
-                <div aria-live="polite" aria-atomic="true">
-                  <div
-                    id="alert-container"
-                    class="position-fixed bottom-0 end-0 p-3"
-                    style="z-index: 1080"
-                  ></div>
-                </div>
-                <div class="col-md-4">
-                  <label class="form-label">País</label>
+                <div class="col-md-6">
+                  <label for="city-country" class="form-label">País</label>
                   <input id="city-country" class="form-control" />
                 </div>
                 <div class="col-md-3">
-                  <label class="form-label">Fecha ida</label>
+                  <label for="city-date-from" class="form-label">Fecha ida</label>
                   <input
                     id="city-date-from"
                     class="form-control"
@@ -81,7 +72,7 @@
                   />
                 </div>
                 <div class="col-md-3">
-                  <label class="form-label">Fecha vuelta</label>
+                  <label for="city-date-to" class="form-label">Fecha vuelta</label>
                   <input
                     id="city-date-to"
                     class="form-control"
@@ -89,10 +80,10 @@
                     required
                   />
                 </div>
-                <div class="col-12">
-                  <label class="form-label"
-                    >Notas (actividades, detalles)</label
-                  >
+                <div class="col-6">
+                  <label for="city-notes" class="form-label">
+                    Notas (actividades, detalles)
+                  </label>
                   <textarea
                     id="city-notes"
                     class="form-control"
@@ -109,6 +100,7 @@
           </div>
         </div>
 
+        <!-- Tabla de destinos -->
         <div class="tab-pane fade" id="tab-list" role="tabpanel">
           <div class="row">
             <div class="col-12">

@@ -22,19 +22,6 @@ class TripManager {
   findCityByName(name) {
     return this.#cities.find((c) => c.getName() === name) || null;
   }
-
-  removeCityByName(name) {
-    // TODO: eliminar ciudad por nombre
-    return name;
-  }
-
-  getAccommodationsCost() {
-    // TODO: calcular costo total de alojamientos de todas las ciudades
-  }
-
-  getTotalDuration() {
-    // TODO: calcular duración total de todas las ciudades
-  }
 }
 
 export default TripManager;

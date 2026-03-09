@@ -1,5 +1,6 @@
 import TripManager from "./domain/tripManager.js";
 import City from "./domain/city.js";
+import Accommodation from "./domain/accommodation.js";
 
 const manager = new TripManager();
 const form = document.getElementById("city-form");
@@ -20,44 +21,44 @@ function renderCities() {
     const duration = city.getDurationDays() ? city.getDurationDays() : "";
     const notesText = city.getNotes ? String(city.getNotes() || "") : "";
     const notesHtml = notesText
-      ? escapeHtml(notesText)
+      ? notesText
       : '<span class="text-muted">Sin datos</span>';
     tr.innerHTML = `<td>
-    <strong>${escapeHtml(city.getName())}</strong>
+    <strong>${city.getName()}</strong>
     </td>
-    <td>${escapeHtml(country)}</td>
+    <td>${country}</td>
     <td>${duration ? duration + " días" : "—"}</td>
-    <td>${escapeHtml(dateFrom)}</td>
-    <td>${escapeHtml(dateTo)}</td>
+    <td>${dateFrom}</td>
+    <td>${dateTo}</td>
     <td>${notesHtml}</td>`;
     citiesTbody.appendChild(tr);
   });
-  updateSummaryCards();
-}
-
-function updateSummaryCards() {
-  // TODO: mostrar resumen
 }
 
 function handleCityFormSubmit(e) {
   e.preventDefault();
-  const data = parseFormValues();
-  const city = createCityFromValues(data);
-  if (!city) return;
-  if (!addCityToManager(city)) return;
+  let name = document.getElementById("city-name").value;
+  let country = document.getElementById("city-country").value;
+  let dateFrom = document.getElementById("city-date-from").value;
+  let dateTo = document.getElementById("city-date-to").value;
+  let notes = document.getElementById("city-notes").value;
+
+  const city = new City(
+    name,
+    country,
+    new Date(dateFrom),
+    new Date(dateTo),
+    notes,
+  );
+  if (!city) {
+    showToast("Error", "No se pudo crear la ciudad", "danger");
+    return;
+  }
+  if (!saveCity(city)) return;
   showToast("Éxito", "Ciudad agregada", "success");
   renderCities();
   form.reset();
-}
-
-function parseFormValues() {
-  return {
-    name: document.getElementById("city-name").value,
-    country: document.getElementById("city-country").value,
-    dateFrom: document.getElementById("city-date-from").value,
-    dateTo: document.getElementById("city-date-to").value,
-    notes: document.getElementById("city-notes").value,
-  };
+  setDefaultDates();
 }
 
 function getTodayIso() {
@@ -75,18 +76,7 @@ function setDefaultDates() {
   if (to && !to.value) to.value = today;
 }
 
-function createCityFromValues({ name, country, dateFrom, dateTo, notes }) {
-  try {
-    dateFrom = dateFrom ? new Date(dateFrom) : null;
-    dateTo = dateTo ? new Date(dateTo) : null;
-    return new City(name, country, dateFrom, dateTo, notes);
-  } catch (e) {
-    showToast("Error", e.message || "No se pudo crear la ciudad", "danger");
-    return null;
-  }
-}
-
-function addCityToManager(city) {
+function saveCity(city) {
   try {
     manager.addCity(city);
     return true;
@@ -94,13 +84,6 @@ function addCityToManager(city) {
     showToast("Error", e.message || "No se pudo agregar la ciudad", "danger");
     return false;
   }
-}
-
-function escapeHtml(s = "") {
-  return String(s)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
 }
 
 function formatDateIso(d) {
@@ -122,9 +105,7 @@ function showToast(title, message, variant = "primary") {
   const wrapper = document.createElement("div");
   wrapper.className = `alert ${variantClass} alert-dismissible fade show`;
   wrapper.setAttribute("role", "alert");
-  wrapper.innerHTML = `<strong>${escapeHtml(title || "Aviso")}</strong> ${escapeHtml(
-    String(message || ""),
-  )} <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>`;
+  wrapper.innerHTML = `<strong>${title || "Aviso"}</strong> ${String(message || "")} <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>`;
   container.appendChild(wrapper);
 
   setTimeout(() => {
