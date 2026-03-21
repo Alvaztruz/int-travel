@@ -2,9 +2,9 @@ import Accommodation from "./accommodation.js";
 
 class City {
   #cityName;
-  #country = null;
-  #dateFrom = null;
-  #dateTo = null;
+  #country;
+  #dateFrom;
+  #dateTo;
   #notes = "";
 
   constructor(cityName, country, dateFrom, dateTo, notes = "") {
