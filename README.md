@@ -38,7 +38,7 @@
 3. Realizar commit y push de los cambios.
 4. Subir un issue con el título "Parte B" mostrando la nueva interfaz de usuario para agregar alojamientos.
 
-### Parte C: rama `main`
+### Parte C: Verificaciones finales
 
 1. Verificar que no existan errores de ESLint y corregirlos si los hay.
 2. Verificar que la cobertura de los tests unitarios de todos los archivos sea del 100 %. Completar los tests si es necesario.
@@ -47,6 +47,8 @@
 5. Subir un issue con el título "Parte C" mostrando la cobertura de los tests y el análisis de accesibilidad con WAVE.
 
 ## Extras (opcional)
+
+En caso de realizar estos cambios subir un issue con el título "Extras" mostrando los puntos implementados.
 
 1. Agregar una pestaña con un resumen de cantidad de ciudades por país (por ejemplo, España: 3, Uruguay: 2, etc.).
 2. En la tabla de destinos, agregar un botón para eliminar cada ciudad.
