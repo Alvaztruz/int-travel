@@ -7,29 +7,44 @@
 - Usar buenas prácticas de codificacion
 - Modificar la interfaz de usuario para usar las nuevas funciones
 
-### Aspectos a tener en cuenta
+## Política sobre herramientas de IA
+
+Para la resolución de este ejercicio **no está permitido el uso de herramientas de asistencia basadas en inteligencia artificial**. Es responsabilidad del estudiante desactivarlas antes de comenzar, entendiendo que su utilización durante la evaluación implicará la **pérdida total del puntaje del ejercicio**.
+
+Ejemplo (desactivar GitHub Copilot en Visual Studio Code):
+
+1. Abrir Visual Studio Code.
+2. Acceder a la sección de Extensiones (ícono de bloques en la barra lateral o mediante el atajo Ctrl + Shift + X).
+3. Buscar la extensión “GitHub Copilot”.
+4. Seleccionar la extensión.
+5. Hacer clic en “Disable” (Deshabilitar).
+6. Verificar que no se muestren sugerencias de código generadas automáticamente.
+
+## Aspectos a tener en cuenta
 
 - Puede agregar nuevas funciones y tests, así como agregar parámetros en funciones existentes.
 - Si necesita realizar supuestos sobre la implementación, agregue comentarios para explicarlos.
 - Los test unitarios se deben codificar en los archivos correspondientes `*.test.js`.
 - La cobertura de los test unitarios debe alcanzar 100 % de sentencias y ramas.
 - Ejecutar PADIS utilizando el comando `checkpadis` en GitHub Codespaces.
+ 
 
 ## Parte A: Lógica de Guardar Alojamiento (9 puntos)
 
-1. Agregar el campo Accommodation en la clase `City` que almacena un objeto de la clase `Accommodation` con las propiedades: `name` (string) y `cost` (number). Implementar la clase y validar lo siguiente:
+1. Implementar la clase Accommodation con las propiedades: name (string) y cost (number), y validar:
+   - Que `cost` sea un número obligatorio mayor o igual a 0.
+   - Que `name` sea obligatorio.
+ 
+2. En la clase `City`, agregar el campo `accommodation` que almacena un objeto de la clase `Accommodation`.
+   - Validar que el tipo de dato de `accommodation` en la clase `City` sea de la clase `Accommodation`
 
-   - Validar que `cost` sea un número obligatorio mayor o igual a 0.
-   - Validar que name sea obligatorio.
-   - Validar que el tipo de dato de Accommodation en la clase City sea de la clase Accommodation.
-
-2. Agregar la función `addAccommodation(accommodation)` en la clase `City` que permita agregar un alojamiento a la ciudad. Validar que el parámetro sea una instancia de la clase `Accommodation`.
+3. Agregar la función `addAccommodation(accommodation)` en la clase `City` que permita agregar un alojamiento a la ciudad. Validar que el parámetro sea una instancia de la clase `Accommodation`.
    
-3. Escribir tests en para cubrir las líneas de los puntos anteriores, incluyendo casos de éxito y error.
+4. Escribir tests en para cubrir las líneas de los puntos anteriores, incluyendo casos de éxito y error.
 
-4. Realizar commit y push de los cambios.
+5. Realizar commit y push de los cambios.
 
-5. Subir un issue con el título "Parte A" con captura del coverage de los tests.
+6. Subir un issue con el título "Parte A" con captura del coverage de los tests.
 
 ## Parte B: UI de Alojamiento (9 puntos)
 
