@@ -27,7 +27,7 @@ function renderCities() {
     <strong>${city.getName()}</strong>
     </td>
     <td>${country}</td>
-    <td>${duration ? duration + " días" : "—"}</td>
+    <td>${duration ? `${duration} días` : "—"}</td>
     <td>${dateFrom}</td>
     <td>${dateTo}</td>
     <td>${notesHtml}</td>`;
@@ -37,11 +37,11 @@ function renderCities() {
 
 function handleCityFormSubmit(e) {
   e.preventDefault();
-  let name = document.getElementById("city-name").value;
-  let country = document.getElementById("city-country").value;
-  let dateFrom = document.getElementById("city-date-from").value;
-  let dateTo = document.getElementById("city-date-to").value;
-  let notes = document.getElementById("city-notes").value;
+  const name = document.getElementById("city-name").value;
+  const country = document.getElementById("city-country").value;
+  const dateFrom = document.getElementById("city-date-from").value;
+  const dateTo = document.getElementById("city-date-to").value;
+  const notes = document.getElementById("city-notes").value;
 
   const city = new City(
     name,

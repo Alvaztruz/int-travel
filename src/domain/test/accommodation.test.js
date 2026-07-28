@@ -1,3 +1,4 @@
+import { describe, beforeEach, test, expect } from "vitest";
 import Accommodation from "../accommodation.js";
 
 describe("Accommodation", () => {
@@ -7,10 +8,7 @@ describe("Accommodation", () => {
   });
 
   describe("Accommodation name", () => {
-    accommodation;
-    test("should set name correctly", () => {
-      // TODO
-    });
+    test("should set name correctly", () => {});
 
     // TODO: agregar más tests para el nombre
   });
