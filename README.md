@@ -60,7 +60,7 @@ Ejemplo (desactivar GitHub Copilot en Visual Studio Code):
 
 1. Verificar que no existan errores de ESLint y corregirlos si los hay.
 2. Verificar que la cobertura de los tests unitarios de todos los archivos sea del 100 %. Completar los tests si es necesario.
-3. Validar con la herramienta WAVE que no existan problemas de accesibilidad.
+3. Validar con la herramienta WAVE que no existan problemas de accesibilidad. En caso de que existan errores o advertencias solucionalos haciendo los ajustes necesarios en el código.
 4. Hacer commit y push de la rama `main` con los cambios realizados.
 5. Subir un issue con el título "Parte C" mostrando la cobertura de los tests y el análisis de accesibilidad con WAVE.
 
