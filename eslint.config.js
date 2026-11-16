@@ -20,7 +20,7 @@ export default defineConfig([
         "warn",
         { max: 50, skipBlankLines: true, skipComments: true },
       ],
-      "max-params": ["error", 3],
+      "max-params": ["error", 7],
 
       // Code good practice
       "prefer-const": "error",

@@ -2,7 +2,7 @@ import { describe, beforeEach, test } from "vitest";
 import Accommodation from "../accommodation.ts";
 
 describe("Accommodation", () => {
-  let accommodation;
+  let accommodation: Accommodation;
   beforeEach(() => {
     accommodation = new Accommodation();
     void accommodation;
@@ -10,7 +10,6 @@ describe("Accommodation", () => {
 
   describe("Accommodation name", () => {
     test("should set name correctly", () => {});
-
     // TODO: agregar más tests para el nombre
   });
 

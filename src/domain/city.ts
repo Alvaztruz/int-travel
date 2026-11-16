@@ -5,8 +5,6 @@ class City {
   #dateTo!: Date;
   #notes: string = "";
 
-  // The public API keeps the exercise's original constructor signature.
-  // eslint-disable-next-line max-params
   constructor(
     cityName: unknown,
     country: unknown,
@@ -93,13 +91,7 @@ class City {
   }
 
   getDurationDays(): number {
-    if (!this.#dateFrom || !this.#dateTo) return 0;
-    const a = new Date(this.#dateFrom);
-    const b = new Date(this.#dateTo);
-    if (Number.isNaN(a.getTime()) || Number.isNaN(b.getTime())) return 0;
-    const diff =
-      Math.round((b.getTime() - a.getTime()) / (1000 * 60 * 60 * 24)) + 1;
-    return diff > 0 ? diff : 0;
+    return calculateDurationDays(this.#dateFrom, this.#dateTo);
   }
 
   validateDatesOrder(
@@ -133,4 +125,18 @@ class City {
   }
 }
 
+export function calculateDurationDays(
+  dateFrom?: Date,
+  dateTo?: Date,
+): number {
+  if (!dateFrom || !dateTo) return 0;
+  const a = new Date(dateFrom);
+  const b = new Date(dateTo);
+  if (Number.isNaN(a.getTime()) || Number.isNaN(b.getTime())) return 0;
+  const diff =
+    Math.round((b.getTime() - a.getTime()) / (1000 * 60 * 60 * 24)) + 1;
+  return diff > 0 ? diff : 0;
+}
+
 export default City;
+
