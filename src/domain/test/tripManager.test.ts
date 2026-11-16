@@ -1,9 +1,9 @@
 import { describe, beforeEach, test, expect } from "vitest";
-import City from "../city.js";
-import TripManager from "../tripManager.js";
+import City from "../city.ts";
+import TripManager from "../tripManager.ts";
 
 describe("TripManager", () => {
-  let manager;
+  let manager: TripManager;
   beforeEach(() => {
     manager = new TripManager();
   });
@@ -29,7 +29,8 @@ describe("TripManager", () => {
         new Date("2023-06-03"),
       ),
     );
-    expect(manager.findCityByName("Lisbon").getName()).toBe("Lisbon");
+    const city = manager.findCityByName("Lisbon");
+    expect(city?.getName()).toBe("Lisbon");
     expect(manager.findCityByName("Unknown")).toBeNull();
   });
 });

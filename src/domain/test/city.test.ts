@@ -1,8 +1,8 @@
 import { describe, beforeEach, test, expect } from "vitest";
-import City from "../city.js";
+import City from "../city.ts";
 
 describe("City", () => {
-  let city;
+  let city: City;
   beforeEach(() => {
     city = new City(
       "TestCity",

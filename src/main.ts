@@ -1,16 +1,16 @@
-import TripManager from "./domain/tripManager.js";
-import City from "./domain/city.js";
-import Accommodation from "./domain/accommodation.js";
+import TripManager from "./domain/tripManager.ts";
+import City from "./domain/city.ts";
 
 const manager = new TripManager();
-const form = document.getElementById("city-form");
-const citiesTbody = document.getElementById("cities-tbody");
+const form = document.getElementById("city-form") as HTMLFormElement | null;
+const citiesTbody = document.getElementById(
+  "cities-tbody",
+) as HTMLTableSectionElement | null;
 
-form.addEventListener("submit", (e) => {
-  handleCityFormSubmit(e);
-});
+form?.addEventListener("submit", handleCityFormSubmit);
 
-function renderCities() {
+function renderCities(): void {
+  if (!citiesTbody) return;
   citiesTbody.innerHTML = "";
   manager.getAllCities().forEach((city, i) => {
     const tr = document.createElement("tr");
@@ -35,13 +35,18 @@ function renderCities() {
   });
 }
 
-function handleCityFormSubmit(e) {
+function handleCityFormSubmit(e: SubmitEvent): void {
   e.preventDefault();
-  const name = document.getElementById("city-name").value;
-  const country = document.getElementById("city-country").value;
-  const dateFrom = document.getElementById("city-date-from").value;
-  const dateTo = document.getElementById("city-date-to").value;
-  const notes = document.getElementById("city-notes").value;
+  const name = (document.getElementById("city-name") as HTMLInputElement).value;
+  const country = (document.getElementById("city-country") as HTMLInputElement)
+    .value;
+  const dateFrom = (
+    document.getElementById("city-date-from") as HTMLInputElement
+  ).value;
+  const dateTo = (document.getElementById("city-date-to") as HTMLInputElement)
+    .value;
+  const notes = (document.getElementById("city-notes") as HTMLTextAreaElement)
+    .value;
 
   const city = new City(
     name,
@@ -57,37 +62,46 @@ function handleCityFormSubmit(e) {
   if (!saveCity(city)) return;
   showToast("Éxito", "Ciudad agregada", "success");
   renderCities();
-  form.reset();
+  form?.reset();
   setDefaultDates();
 }
 
-function getTodayIso() {
+function getTodayIso(): string {
   const d = new Date();
   const mm = String(d.getMonth() + 1).padStart(2, "0");
   const dd = String(d.getDate()).padStart(2, "0");
   return `${d.getFullYear()}-${mm}-${dd}`;
 }
 
-function setDefaultDates() {
+function setDefaultDates(): void {
   const today = getTodayIso();
-  const from = document.getElementById("city-date-from");
-  const to = document.getElementById("city-date-to");
+  const from = document.getElementById(
+    "city-date-from",
+  ) as HTMLInputElement | null;
+  const to = document.getElementById(
+    "city-date-to",
+  ) as HTMLInputElement | null;
   if (from && !from.value) from.value = today;
   if (to && !to.value) to.value = today;
 }
 
-function saveCity(city) {
+function saveCity(city: City): boolean {
   try {
     manager.addCity(city);
     return true;
-  } catch (e) {
-    showToast("Error", e.message || "No se pudo agregar la ciudad", "danger");
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    showToast("Error", message || "No se pudo agregar la ciudad", "danger");
     return false;
   }
 }
 
-function formatDateIso(d) {
+function formatDateIso(d: string | Date): string {
   if (!d) return "";
+  if (typeof d === "string" && /^\d{4}-\d{2}-\d{2}$/.test(d)) {
+    const [year, month, day] = d.split("-");
+    return `${day}/${month}/${year}`;
+  }
   try {
     const dt = new Date(d);
     if (Number.isNaN(dt.getTime())) return String(d);
@@ -97,7 +111,11 @@ function formatDateIso(d) {
   }
 }
 
-function showToast(title, message, variant = "primary") {
+function showToast(
+  title: string,
+  message: string,
+  variant = "primary",
+): void {
   const container = document.getElementById("alert-container");
   if (!container) return;
 
@@ -109,18 +127,7 @@ function showToast(title, message, variant = "primary") {
   container.appendChild(wrapper);
 
   setTimeout(() => {
-    try {
-      if (window.bootstrap && window.bootstrap.Alert) {
-        const inst = window.bootstrap.Alert.getOrCreateInstance(wrapper);
-        if (inst && typeof inst.close === "function") {
-          inst.close();
-          return;
-        }
-      }
-    } catch {
-      // ignore and remove
-    }
-    if (wrapper.parentNode) wrapper.parentNode.removeChild(wrapper);
+    wrapper.remove();
   }, 3000);
 }
 

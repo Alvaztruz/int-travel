@@ -1,13 +1,19 @@
-import Accommodation from "./accommodation.js";
-
 class City {
-  #cityName;
-  #country;
-  #dateFrom;
-  #dateTo;
-  #notes = "";
+  #cityName!: string;
+  #country!: string;
+  #dateFrom!: Date;
+  #dateTo!: Date;
+  #notes: string = "";
 
-  constructor(cityName, country, dateFrom, dateTo, notes = "") {
+  // The public API keeps the exercise's original constructor signature.
+  // eslint-disable-next-line max-params
+  constructor(
+    cityName: unknown,
+    country: unknown,
+    dateFrom: unknown,
+    dateTo: unknown,
+    notes: unknown = "",
+  ) {
     this.setName(cityName);
     this.setCountry(country);
     this.validateDatesOrder(dateFrom, dateTo);
@@ -16,11 +22,11 @@ class City {
     this.setNotes(notes);
   }
 
-  getCountry() {
+  getCountry(): string {
     return this.#country;
   }
 
-  setCountry(country) {
+  setCountry(country: unknown): void {
     if (country === null || country === undefined) {
       throw new Error("Country must be a string");
     }
@@ -30,15 +36,15 @@ class City {
     this.#country = country.trim();
   }
 
-  getName() {
+  getName(): string {
     return this.#cityName;
   }
 
-  getDateFrom() {
+  getDateFrom(): string {
     return this.#dateFrom.toISOString().slice(0, 10);
   }
 
-  setDateFrom(date) {
+  setDateFrom(date: unknown): void {
     if (date === null || date === undefined || date === "") {
       throw new Error("dateFrom is required");
     }
@@ -49,11 +55,11 @@ class City {
     return;
   }
 
-  getDateTo() {
+  getDateTo(): string {
     return this.#dateTo.toISOString().slice(0, 10);
   }
 
-  setDateTo(date) {
+  setDateTo(date: unknown): void {
     if (date === null || date === undefined || date === "") {
       throw new Error("dateTo is required");
     }
@@ -64,18 +70,18 @@ class City {
     return;
   }
 
-  setName(cityName) {
+  setName(cityName: unknown): void {
     if (typeof cityName !== "string" || cityName.trim() === "") {
       throw new Error("El nombre de la ciudad debe ser una cadena no vacía");
     }
     this.#cityName = cityName.trim();
   }
 
-  getNotes() {
+  getNotes(): string {
     return this.#notes;
   }
 
-  setNotes(text) {
+  setNotes(text: unknown): void {
     if (text === null || text === undefined) {
       this.#notes = "";
       return;
@@ -86,21 +92,25 @@ class City {
     this.#notes = text.trim();
   }
 
-  getDurationDays() {
+  getDurationDays(): number {
     if (!this.#dateFrom || !this.#dateTo) return 0;
     const a = new Date(this.#dateFrom);
     const b = new Date(this.#dateTo);
     if (Number.isNaN(a.getTime()) || Number.isNaN(b.getTime())) return 0;
-    const diff = Math.round((b - a) / (1000 * 60 * 60 * 24)) + 1;
+    const diff =
+      Math.round((b.getTime() - a.getTime()) / (1000 * 60 * 60 * 24)) + 1;
     return diff > 0 ? diff : 0;
   }
 
-  validateDatesOrder(dateFrom = this.#dateFrom, dateTo = this.#dateTo) {
+  validateDatesOrder(
+    dateFrom: unknown = this.#dateFrom,
+    dateTo: unknown = this.#dateTo,
+  ): void {
     if (!dateFrom || !dateTo) {
       throw new Error("Both dateFrom and dateTo are required");
     }
-    const dateFromParsed = new Date(dateFrom);
-    const dateToParsed = new Date(dateTo);
+    const dateFromParsed = this.parseDate(dateFrom);
+    const dateToParsed = this.parseDate(dateTo);
     if (
       Number.isNaN(dateFromParsed.getTime()) ||
       Number.isNaN(dateToParsed.getTime())
@@ -109,6 +119,17 @@ class City {
     }
     if (dateToParsed < dateFromParsed)
       throw new Error("dateTo cannot be earlier than dateFrom");
+  }
+
+  private parseDate(value: unknown): Date {
+    if (
+      !(value instanceof Date) &&
+      typeof value !== "string" &&
+      typeof value !== "number"
+    ) {
+      return new Date(Number.NaN);
+    }
+    return new Date(value);
   }
 }
 

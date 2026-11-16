@@ -1,10 +1,11 @@
-import { describe, beforeEach, test, expect } from "vitest";
-import Accommodation from "../accommodation.js";
+import { describe, beforeEach, test } from "vitest";
+import Accommodation from "../accommodation.ts";
 
 describe("Accommodation", () => {
   let accommodation;
   beforeEach(() => {
     accommodation = new Accommodation();
+    void accommodation;
   });
 
   describe("Accommodation name", () => {
@@ -14,6 +15,6 @@ describe("Accommodation", () => {
   });
 
   describe("Accommodation cost", () => {
-    // TODO
+    test.todo("agregar tests para el costo");
   });
 });
