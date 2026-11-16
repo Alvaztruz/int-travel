@@ -16,7 +16,6 @@ describe("TripManager", () => {
   });
 
   test("find city by name returns null if not found", () => {
-    // TODO: Agregar test para la función findCityByName cuando no encuentra la ciudad
-    // Considerar que si no encuentra, retornará null
+    expect(manager.findCityByName("NonExistentCity")).toBeNull();
   });
 });

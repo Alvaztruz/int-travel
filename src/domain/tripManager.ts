@@ -17,7 +17,11 @@ class TripManager {
   }
 
   findCityByName(name: string): City | null {
-    return this.#cities.find((c) => c.getName() === name) || null;
+    const filteredCities = this.#cities.filter((c) => c.getName() === name);
+    if (filteredCities.length === 0) {
+      return null;
+    }
+    return filteredCities[0];
   }
 }
 
