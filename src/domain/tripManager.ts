@@ -8,9 +8,6 @@ class TripManager {
   }
 
   addCity(city: City): City {
-    if (!(city instanceof City)) {
-      throw new Error("El parámetro debe ser una instancia de City");
-    }
     this.#cities.push(city);
     return city;
   }
