@@ -1,5 +1,6 @@
 import TripManager from "./domain/tripManager.ts";
 import City from "./domain/city.ts";
+import Accommodation from "./domain/accommodation.ts";
 
 const manager = new TripManager();
 const form = document.getElementById("city-form") as HTMLFormElement | null;
@@ -19,6 +20,8 @@ function renderCities(): void {
     const dateTo = formatDateIso(city.getDateTo ? city.getDateTo() : "");
     const country = city.getCountry ? city.getCountry() || "" : "";
     const duration = city.getDurationDays() ? city.getDurationDays() : "";
+    const accName = (city.getAccomodation().getName()) ? (city.getAccomodation().getName()) : "";
+    const accCost = (city.getAccomodation().getCost()) ? (city.getAccomodation().getCost()) : "";
     const notesText = city.getNotes ? String(city.getNotes() || "") : "";
     const notesHtml = notesText
       ? notesText
@@ -30,6 +33,8 @@ function renderCities(): void {
     <td>${duration ? `${duration} días` : "—"}</td>
     <td>${dateFrom}</td>
     <td>${dateTo}</td>
+    <td>${accName}</td>
+    <td>${accCost}</td>
     <td>${notesHtml}</td>`;
     citiesTbody.appendChild(tr);
   });
@@ -45,12 +50,16 @@ function handleCityFormSubmit(e: SubmitEvent): void {
   ).value;
   const dateTo = (document.getElementById("city-date-to") as HTMLInputElement)
     .value;
+  const accName = (document.getElementById("acc-name") as HTMLInputElement).value;
+  const accCost = parseInt((document.getElementById("acc-cost") as HTMLInputElement).value);
+    
   const notes = (document.getElementById("city-notes") as HTMLTextAreaElement)
     .value;
 
   const city = new City(
     name,
     country,
+    new Accommodation(accName, accCost),
     new Date(dateFrom),
     new Date(dateTo),
     notes,
